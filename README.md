@@ -24,8 +24,7 @@ Research code, numerical datasets and figures accompanying the study.
 13. [Reproducibility](#reproducibility)
 14. [Data availability](#data-availability)
 15. [Citation](#citation)
-16. [Archiving](#archiving)
-17. [License, acknowledgments and funding](#license-acknowledgments-and-funding)
+16. [License, acknowledgments and funding](#license-acknowledgments-and-funding)
 
 ---
 
@@ -567,11 +566,6 @@ Machine-readable metadata: [`CITATION.cff`](CITATION.cff).
 Archived version on Zenodo: record [18325627](https://zenodo.org/records/18325627). Zenodo assigns a
 *version DOI* to each archived release and a *concept DOI* that always resolves to the latest version;
 cite the version DOI to refer to the exact code used.
-
-## Archiving
-
-This repository is prepared for archiving on Zenodo through the GitHub integration. The archive DOIs
-(version and concept) will be added here after the first release.
 
 ## License, acknowledgments and funding
 
