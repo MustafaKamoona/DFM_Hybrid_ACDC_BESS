@@ -54,10 +54,12 @@ renewable curtailment -87.9 %, battery health consumption -29.7 %, energy cost
 
 The conventional representation of a BESS in energy management is the static box
 
-$$-P_{\mathrm{B}}^{\mathrm{rated}} \le P_{\mathrm{B},k} \le P_{\mathrm{B}}^{\mathrm{rated}},
-\qquad SOC_{\min} \le SOC_k \le SOC_{\max},$$
+```math
+-P_{\mathrm{B}}^{\mathrm{rated}} \le P_{\mathrm{B},k} \le P_{\mathrm{B}}^{\mathrm{rated}},
+\qquad SOC_{\min} \le SOC_k \le SOC_{\max},
+```
 
-with $P_{\mathrm{B},k}>0$ for discharge. It states what the converter can do at one instant, but not
+with $`P_{\mathrm{B},k}>0`$ for discharge. It states what the converter can do at one instant, but not
 
 - how much power the battery can **sustain** over a required support period,
 - how much it **should** provide given its health and its degradation budget,
@@ -79,79 +81,93 @@ rolling-horizon EMS selects the BESS operating point.
 
 ### Nested flexibility sets
 
-$$\mathcal{F}^{\mathrm{rated}} \supseteq \mathcal{F}^{\mathrm{physical}}_k \supseteq \mathcal{F}^{\mathrm{safe}}_k,
+```math
+\mathcal{F}^{\mathrm{rated}} \supseteq \mathcal{F}^{\mathrm{physical}}_k \supseteq \mathcal{F}^{\mathrm{safe}}_k,
 \qquad
-\mathcal{F}^{\mathrm{physical}}_k = \mathcal{F}^{\mathrm{en}}_k \cap \mathcal{F}^{\mathrm{deg}}_k \cap \mathcal{F}^{\mathrm{net}}_k$$
+\mathcal{F}^{\mathrm{physical}}_k = \mathcal{F}^{\mathrm{en}}_k \cap \mathcal{F}^{\mathrm{deg}}_k \cap \mathcal{F}^{\mathrm{net}}_k
+```
 
 ### Energy and health limit
 
-For a support horizon $H_f$ and the health-dependent usable energy $E^{\mathrm{use}}_k = SOH_k\,E_{\mathrm{rated}}$:
+For a support horizon $`H_f`$ and the health-dependent usable energy $`E^{\mathrm{use}}_k = SOH_k\,E_{\mathrm{rated}}`$:
 
-$$P^{\mathrm{dis}}_{\mathrm{en},k} = \min\left\{P^{\mathrm{rated}}_{\mathrm{dis}},\ \frac{(SOC_k-SOC_{\min})\,E^{\mathrm{use}}_k\,\eta_{\mathrm{dis}}}{H_f}\right\},
+```math
+P^{\mathrm{dis}}_{\mathrm{en},k} = \min\left\{P^{\mathrm{rated}}_{\mathrm{dis}},\ \frac{(SOC_k-SOC_{\min})\,E^{\mathrm{use}}_k\,\eta_{\mathrm{dis}}}{H_f}\right\},
 \qquad
-P^{\mathrm{ch}}_{\mathrm{en},k} = \min\left\{P^{\mathrm{rated}}_{\mathrm{ch}},\ \frac{(SOC_{\max}-SOC_k)\,E^{\mathrm{use}}_k}{\eta_{\mathrm{ch}}\,H_f}\right\}$$
+P^{\mathrm{ch}}_{\mathrm{en},k} = \min\left\{P^{\mathrm{rated}}_{\mathrm{ch}},\ \frac{(SOC_{\max}-SOC_k)\,E^{\mathrm{use}}_k}{\eta_{\mathrm{ch}}\,H_f}\right\}
+```
 
 ### Degradation limit
 
 Battery aging follows the semi-empirical model of Xu et al. (2018) with its published LMO-cell
 parameters. With the cycle-depth and SOC stress functions
-$\Phi(\delta) = (k_{\delta 1}\delta^{k_{\delta 2}} + k_{\delta 3})^{-1}$ and
-$S_\sigma(\sigma) = e^{k_\sigma(\sigma-\sigma_{\mathrm{ref}})}$, the accumulated degradation including
+$`\Phi(\delta) = (k_{\delta 1}\delta^{k_{\delta 2}} + k_{\delta 3})^{-1}`$ and
+$`S_\sigma(\sigma) = e^{k_\sigma(\sigma-\sigma_{\mathrm{ref}})}`$, the accumulated degradation including
 the initial SEI-film formation is
 
-$$D = L(F) = 1-\alpha_{\mathrm{sei}}e^{-\beta_{\mathrm{sei}}F}-(1-\alpha_{\mathrm{sei}})e^{-F},
-\qquad SOH = 1-D .$$
+```math
+D = L(F) = 1-\alpha_{\mathrm{sei}}e^{-\beta_{\mathrm{sei}}F}-(1-\alpha_{\mathrm{sei}})e^{-F},
+\qquad SOH = 1-D .
+```
 
-For online use the cycle depth is measured from the upper SOC limit, $\delta_k = SOC_{\max}-SOC_k$, and a
-full cycle of depth $\delta$ starting at $SOC_{\max}$ has stress
-$G(\delta) = \Phi(\delta)\,S_\sigma(SOC_{\max}-\delta/2)$. The daily cycle-degradation budget corresponds
-to $N_{\mathrm{ref}}$ reference cycles of depth $DoD_{\mathrm{ref}}$:
+For online use the cycle depth is measured from the upper SOC limit, $`\delta_k = SOC_{\max}-SOC_k`$, and a
+full cycle of depth $`\delta`$ starting at $`SOC_{\max}`$ has stress
+$`G(\delta) = \Phi(\delta)\,S_\sigma(SOC_{\max}-\delta/2)`$. The daily cycle-degradation budget corresponds
+to $`N_{\mathrm{ref}}`$ reference cycles of depth $`DoD_{\mathrm{ref}}`$:
 
-$$D^{\max} = L'(F_k)\,N_{\mathrm{ref}}\,G(DoD_{\mathrm{ref}}),\qquad
-D^{\mathrm{allow}}_k = \max\{0,\ D^{\max}-D^{\mathrm{cyc}}_k\},$$
+```math
+D^{\max} = L'(F_k)\,N_{\mathrm{ref}}\,G(DoD_{\mathrm{ref}}),\qquad
+D^{\mathrm{allow}}_k = \max\{0,\ D^{\max}-D^{\mathrm{cyc}}_k\},
+```
 
 and the degradation-limited powers are
 
-$$P^{\mathrm{dis}}_{\mathrm{deg},k} = \max\{0\le P\le P^{\mathrm{rated}}_{\mathrm{dis}} : \Delta D_k(P)\le D^{\mathrm{allow}}_k\},\qquad
-P^{\mathrm{ch}}_{\mathrm{deg},k} = \max\{0\le P\le P^{\mathrm{rated}}_{\mathrm{ch}} : \Delta D_k(-P)\le D^{\mathrm{allow}}_k\},$$
+```math
+P^{\mathrm{dis}}_{\mathrm{deg},k} = \max\{0\le P\le P^{\mathrm{rated}}_{\mathrm{dis}} : \Delta D_k(P)\le D^{\mathrm{allow}}_k\},\qquad
+P^{\mathrm{ch}}_{\mathrm{deg},k} = \max\{0\le P\le P^{\mathrm{rated}}_{\mathrm{ch}} : \Delta D_k(-P)\le D^{\mathrm{allow}}_k\},
+```
 
-where $\Delta D_k(P)$ is the cycle-induced degradation if $P$ were sustained for $H_f$ from the current
-state (truncated at the SOC limits). It is non-decreasing in $|P|$, so both limits are found by
+where $`\Delta D_k(P)`$ is the cycle-induced degradation if $`P`$ were sustained for $`H_f`$ from the current
+state (truncated at the SOC limits). It is non-decreasing in $`|P|`$, so both limits are found by
 bisection.
 
 **Exact state update and linearized envelope limit.** The aging model is used at two levels:
 
 - *Battery state (exact, nonlinear).* After each interval the linearized degradation is advanced with
-  the realized cycle and calendar stress, $F_{k+1} = F_k + \tfrac{1}{2}\lvert G(\delta_{k+1}) - G(\delta_k)\rvert + \Delta F^{\mathrm{cal}}_k$,
-  and the state of health follows the full capacity-fade function, $SOH_{k+1} = 1 - L(F_{k+1})$.
+  the realized cycle and calendar stress, $`F_{k+1} = F_k + \tfrac{1}{2}\lvert G(\delta_{k+1}) - G(\delta_k)\rvert + \Delta F^{\mathrm{cal}}_k`$,
+  and the state of health follows the full capacity-fade function, $`SOH_{k+1} = 1 - L(F_{k+1})`$.
   Reported health consumption is evaluated ex post by rainflow counting of the realized SOC trajectory.
 - *Envelope limit (local linearization, cycle stress only).* For the degradation limit, the increment of
   a candidate power is linearized at the current state,
-  $\Delta D_k(P) = L'(F_k)\,\tfrac{1}{2}\lvert G(\delta_{\mathrm{end}}(P)) - G(\delta_k)\rvert$, where
-  $\delta_{\mathrm{end}}(P)$ is the depth reached after sustaining $P$ for $H_f$. The cycle stress already
-  used during the day, $F^{\mathrm{cyc}}_k$, is accumulated in stress units, and the used allowance is
-  expressed with the current slope, $D^{\mathrm{cyc}}_k = L'(F_k)\,F^{\mathrm{cyc}}_k$; the slope is
+  $`\Delta D_k(P) = L'(F_k)\,\tfrac{1}{2}\lvert G(\delta_{\mathrm{end}}(P)) - G(\delta_k)\rvert`$, where
+  $`\delta_{\mathrm{end}}(P)`$ is the depth reached after sustaining $`P`$ for $`H_f`$. The cycle stress already
+  used during the day, $`F^{\mathrm{cyc}}_k`$, is accumulated in stress units, and the used allowance is
+  expressed with the current slope, $`D^{\mathrm{cyc}}_k = L'(F_k)\,F^{\mathrm{cyc}}_k`$; the slope is
   re-evaluated at every interval.
 
-With these definitions the positive factor $L'(F_k)$ multiplies every term of the feasibility condition
+With these definitions the positive factor $`L'(F_k)`$ multiplies every term of the feasibility condition
 and cancels exactly:
 
-$$\tfrac{1}{2}\lvert G(\delta_{\mathrm{end}}(P)) - G(\delta_k)\rvert \le N_{\mathrm{ref}}\,G(DoD_{\mathrm{ref}}) - F^{\mathrm{cyc}}_k .$$
+```math
+\tfrac{1}{2}\lvert G(\delta_{\mathrm{end}}(P)) - G(\delta_k)\rvert \le N_{\mathrm{ref}}\,G(DoD_{\mathrm{ref}}) - F^{\mathrm{cyc}}_k .
+```
 
 The cancellation is a property of this local linearized feasibility calculation. It does not apply to the
-nonlinear increment $L(F_k + \Delta F) - L(F_k)$, nor would it hold if the degradation of past intervals
+nonlinear increment $`L(F_k + \Delta F) - L(F_k)`$, nor would it hold if the degradation of past intervals
 were accumulated in SOH units with their own slopes. The limit still depends on SOH through the usable
-energy, which determines $\delta_{\mathrm{end}}(P)$.
+energy, which determines $`\delta_{\mathrm{end}}(P)`$.
 
 ### Network-deliverability limit
 
-$P^{\mathrm{dis}}_{\mathrm{net},k}$ and $P^{\mathrm{ch}}_{\mathrm{net},k}$ are the largest discharge and
+$`P^{\mathrm{dis}}_{\mathrm{net},k}`$ and $`P^{\mathrm{ch}}_{\mathrm{net},k}`$ are the largest discharge and
 charge powers for which no monitored constraint is violated (or, if already violated without storage,
 aggravated), evaluated on the PyDAE model of the network for the forecast conditions:
 
-$$V^{\min}_i \le V_{i,k} \le V^{\max}_i,\quad I_{\ell,k}\le I^{\max}_\ell,\quad
+```math
+V^{\min}_i \le V_{i,k} \le V^{\max}_i,\quad I_{\ell,k}\le I^{\max}_\ell,\quad
 V^{\min}_{\mathrm{dc},m}\le V_{\mathrm{dc},m,k}\le V^{\max}_{\mathrm{dc},m},\quad
-P_{j,k}^2+Q_{j,k}^2\le (S^{\mathrm{rated}}_j)^2 .$$
+P_{j,k}^2+Q_{j,k}^2\le (S^{\mathrm{rated}}_j)^2 .
+```
 
 All 40 AC buses (three phases, phase-to-neutral), the three feeder-head currents, all AC and DC line
 currents, the 26 DC bus voltages and the nine converters are monitored; the limits are found by
@@ -160,20 +176,26 @@ network-security layer common to all strategies.
 
 ### Physical envelope, active limiter and uncertainty reserve
 
-$$P^{\mathrm{dis}}_{\mathrm{flex},k} = \min\{P^{\mathrm{dis}}_{\mathrm{en},k},\,P^{\mathrm{dis}}_{\mathrm{deg},k},\,P^{\mathrm{dis}}_{\mathrm{net},k}\},
+```math
+P^{\mathrm{dis}}_{\mathrm{flex},k} = \min\{P^{\mathrm{dis}}_{\mathrm{en},k},\,P^{\mathrm{dis}}_{\mathrm{deg},k},\,P^{\mathrm{dis}}_{\mathrm{net},k}\},
 \qquad
-P^{\mathrm{ch}}_{\mathrm{flex},k} = \min\{P^{\mathrm{ch}}_{\mathrm{en},k},\,P^{\mathrm{ch}}_{\mathrm{deg},k},\,P^{\mathrm{ch}}_{\mathrm{net},k}\}$$
+P^{\mathrm{ch}}_{\mathrm{flex},k} = \min\{P^{\mathrm{ch}}_{\mathrm{en},k},\,P^{\mathrm{ch}}_{\mathrm{deg},k},\,P^{\mathrm{ch}}_{\mathrm{net},k}\}
+```
 
 The **active limiter** of each side is the argument of the minimum (energy, degradation or network; "rated"
 when no limit is below the rating). With the DC-subsystem net forecast error
-$\epsilon^{\mathrm{net}}_k = \epsilon_{\mathrm{L},k}-\epsilon_{\mathrm{PV},k}-\epsilon_{\mathrm{W},k}$ and a
-risk tolerance $\varepsilon$, the directional reserves and the safe envelope are
+$`\epsilon^{\mathrm{net}}_k = \epsilon_{\mathrm{L},k}-\epsilon_{\mathrm{PV},k}-\epsilon_{\mathrm{W},k}`$ and a
+risk tolerance $`\varepsilon`$, the directional reserves and the safe envelope are
 
-$$P^{\mathrm{dis}}_{\mathrm{res},k} = Q_{1-\varepsilon}\big([\epsilon^{\mathrm{net}}_k]^+\big),\quad
+```math
+P^{\mathrm{dis}}_{\mathrm{res},k} = Q_{1-\varepsilon}\big([\epsilon^{\mathrm{net}}_k]^+\big),\quad
 P^{\mathrm{ch}}_{\mathrm{res},k} = Q_{1-\varepsilon}\big([-\epsilon^{\mathrm{net}}_k]^+\big),\quad
-P^{\cdot}_{\mathrm{safe},k} = \max\{0,\ P^{\cdot}_{\mathrm{flex},k}-P^{\cdot}_{\mathrm{res},k}\},$$
+P^{\cdot}_{\mathrm{safe},k} = \max\{0,\ P^{\cdot}_{\mathrm{flex},k}-P^{\cdot}_{\mathrm{res},k}\},
+```
 
-$$-P^{\mathrm{ch}}_{\mathrm{safe},k} \le P_{\mathrm{B},k} \le P^{\mathrm{dis}}_{\mathrm{safe},k} .$$
+```math
+-P^{\mathrm{ch}}_{\mathrm{safe},k} \le P_{\mathrm{B},k} \le P^{\mathrm{dis}}_{\mathrm{safe},k} .
+```
 
 The reserve quantiles are estimated from 20,000 AR(1) forecast-error trajectories that are independent of
 the Monte Carlo realizations used for evaluation.
@@ -183,20 +205,22 @@ the Monte Carlo realizations used for evaluation.
 The rolling-horizon EMS minimizes grid-exchange cost, a renewable-curtailment penalty and the battery
 degradation cost:
 
-$$\min\ J = \sum_k \big(c_k P^{+}_{\mathrm{grid},k} - c^{\mathrm{exp}} P^{-}_{\mathrm{grid},k}\big)\Delta t
-+ \lambda_{\mathrm{curt}}\sum_k P_{\mathrm{curt},k}\Delta t + \lambda_{\mathrm{deg}}\sum_k \Delta D_k ,$$
+```math
+\min\ J = \sum_k \big(c_k P^{+}_{\mathrm{grid},k} - c^{\mathrm{exp}} P^{-}_{\mathrm{grid},k}\big)\Delta t
++ \lambda_{\mathrm{curt}}\sum_k P_{\mathrm{curt},k}\Delta t + \lambda_{\mathrm{deg}}\sum_k \Delta D_k ,
+```
 
-with $\lambda_{\mathrm{deg}} = C_{\mathrm{rep}}/(1-SOH_{\mathrm{EOL}})$ and the network-required
+with $`\lambda_{\mathrm{deg}} = C_{\mathrm{rep}}/(1-SOH_{\mathrm{EOL}})`$ and the network-required
 curtailment linearized around the forecast,
-$P_{\mathrm{curt},k} \ge C^0_k + g^{\mathrm{dis}}_k P_{\mathrm{dis},k} - g^{\mathrm{ch}}_k P_{\mathrm{ch},k}$.
+$`P_{\mathrm{curt},k} \ge C^0_k + g^{\mathrm{dis}}_k P_{\mathrm{dis},k} - g^{\mathrm{ch}}_k P_{\mathrm{ch},k}`$.
 
 - Decision variables: charge and discharge power, binary mode variables (no simultaneous charge and
   discharge), grid exchange and, for the network-aware formulation, curtailment.
 - Horizon: shrinking to the end of the day; 15-min stages over the first 4 h, then 1-h blocks.
-- Degradation in the EMS: piecewise-linear convex hull of $G$ over ten equal cycle-depth segments,
-  converted with the slope $L'(F_k)$ of the current interval over the whole planning horizon; the
+- Degradation in the EMS: piecewise-linear convex hull of $`G`$ over ten equal cycle-depth segments,
+  converted with the slope $`L'(F_k)`$ of the current interval over the whole planning horizon; the
   cumulative allowance is imposed with the same slope.
-- Solver: HiGHS (SciPy), relative MIP gap $10^{-4}$. Only the first stage is applied, and it satisfies
+- Solver: HiGHS (SciPy), relative MIP gap $`10^{-4}`$. Only the first stage is applied, and it satisfies
   the exact safe envelope.
 - Real-time layer (all BESS strategies): within each interval the BESS compensates the realized DC net
   forecast error around its schedule — up to the rated and SOC limits for B1 and B2, and up to the
@@ -217,18 +241,18 @@ and the BESS, PV and wind are added as constant-power injections at existing DC 
 
 | Element | Configuration |
 |---|---|
-| AC network | Residential, industrial and commercial feeders; 40 AC buses; 400 V (231 V phase-to-neutral); 20/0.4 kV transformers of 500 / 150 / 300 kVA ($R_{cc}=1\%$, $X_{cc}=4\%$) |
+| AC network | Residential, industrial and commercial feeders; 40 AC buses; 400 V (231 V phase-to-neutral); 20/0.4 kV transformers of 500 / 150 / 300 kVA ($`R_{cc}=1\%`$, $`X_{cc}=4\%`$) |
 | DC network | Meshed 800-V DC grid, 26 DC buses; DC lines 0.162 Ω/km, 300 A |
-| Converters | Nine VSCs: eight P-Q converters with decentralized P-V droop ($K_{\mathrm{droop}}=10^6$) and the DC-voltage-forming converter I01-H01 ($V_{dc}$-Q); ratings 150 / 50 / 20 kVA, I01-H01 150 kVA |
-| BESS | DC hub bus H02; 150 kW / 300 kWh; $\eta_{\mathrm{ch}}=\eta_{\mathrm{dis}}=0.95$; SOC 0.10-0.90; initial SOC 0.50 and SOH 0.90; end-of-life SOH 0.80 |
+| Converters | Nine VSCs: eight P-Q converters with decentralized P-V droop ($`K_{\mathrm{droop}}=10^6`$) and the DC-voltage-forming converter I01-H01 ($`V_{dc}`$-Q); ratings 150 / 50 / 20 kVA, I01-H01 150 kVA |
+| BESS | DC hub bus H02; 150 kW / 300 kWh; $`\eta_{\mathrm{ch}}=\eta_{\mathrm{dis}}=0.95`$; SOC 0.10-0.90; initial SOC 0.50 and SOH 0.90; end-of-life SOH 0.80 |
 | PV | 450 kWp on 10 DC buses in proportion to their Case-3 DC load ratings: S11 16.50, S15 57.21, S16 60.51, S17 38.50, S18 51.70, H02 98.43, D12 41.69, D17 52.11, D19 16.68, D20 16.68 kWp; Haurwitz clear-sky irradiance, Seville, 15 April, performance ratio 0.85 |
 | Wind | One 60-kW turbine at D19; diurnal wind speed (mean 7 m/s, amplitude 1.5 m/s, maximum at 15 h); cubic power curve (cut-in / rated / cut-out 3 / 12 / 25 m/s) |
 | Demand | Load case of the benchmark with high DC penetration (Load-2 in the Topology-3 paper), 24 h at 15-min resolution |
 | Operating limits | AC voltage 0.95-1.05 pu of 231 V; DC voltage 0.95-1.05 pu of 800 V (760-840 V); converter apparent power |
 | Feeder-head current limits | 724.6 / 231.9 / 434.8 A (R01/I01/C01); Industrial (I01): 160-kVA current basis |
-| Tariff | Time of use: 0.09 (0-8 h) / 0.14 / 0.22 EUR/kWh (10-14 h and 18-22 h); curtailment penalty 0.05 EUR/kWh; $\lambda_{\mathrm{deg}}$ = 450 kEUR per unit degradation |
-| DFM design | $H_f$ = 60 min; $\varepsilon$ = 0.05; allowance of 1 reference cycle per day at 80 % depth |
-| Uncertainty | AR(1), $\phi=0.8$; PV 10 %, wind 15 % + 3 % of rating, AC and DC demand 5 %; reserve from 20,000 trajectories; 100 Monte Carlo realizations |
+| Tariff | Time of use: 0.09 (0-8 h) / 0.14 / 0.22 EUR/kWh (10-14 h and 18-22 h); curtailment penalty 0.05 EUR/kWh; $`\lambda_{\mathrm{deg}}`$ = 450 kEUR per unit degradation |
+| DFM design | $`H_f`$ = 60 min; $`\varepsilon`$ = 0.05; allowance of 1 reference cycle per day at 80 % depth |
+| Uncertainty | AR(1), $`\phi=0.8`$; PV 10 %, wind 15 % + 3 % of rating, AC and DC demand 5 %; reserve from 20,000 trajectories; 100 Monte Carlo realizations |
 
 ## Evaluated strategies
 
@@ -300,7 +324,7 @@ realizations against B1 and B2, and the lowest health consumption in every reali
 
 **Net forecast-error distribution and directional reserves** (`Fig_uncertainty_reserve`).
 Percentile bands (P1-P99, P5-P95, P25-P75) of the DC-subsystem net forecast error from the 20,000 reserve
-trajectories, and the directional reserves at $\varepsilon = 0.05$ (which are, by definition, the P95 and
+trajectories, and the directional reserves at $`\varepsilon = 0.05`$ (which are, by definition, the P95 and
 P5 boundaries). The P99-P1 spread ranges from 30.1 kW (3.75 h) to 173.8 kW
 (11.75 h), driven by the PV forecast error at midday; the reserves reach 61.68 kW
 (discharge) and 60.66 kW (charge). These reserves determine how much of the physical envelope
@@ -311,7 +335,7 @@ can be committed.
 **Ablation and sensitivity** (`Fig_ablation_sensitivity`).
 Left: change of the Monte Carlo means when one component is removed (symmetric-logarithmic axis, labels
 give the largest changes). Other panels: change with respect to the nominal design when the support
-horizon $H_f$, risk tolerance $\varepsilon$, initial health $SOH_0$ or degradation allowance $N_{\mathrm{ref}}$
+horizon $`H_f`$, risk tolerance $`\varepsilon`$, initial health $`SOH_0`$ or degradation allowance $`N_{\mathrm{ref}}`$
 is varied (dashed line: nominal value).
 
 ![Ablation and sensitivity](README_Figures/Fig_ablation_sensitivity.png)
@@ -327,15 +351,15 @@ without storage, the rated power, and the intervals in which the converter ratin
 feeder-head current (charge) is the binding network constraint. During the network-curtailment period
 (8.5-13.25 h) the deliverable discharge power does not exceed 0.6 kW,
 because the PV surplus already loads I01-H01 to its rating; at the evening peak the feeder-head current
-limits charging to as little as 65.6 kW. This is the network component $\mathcal{F}^{\mathrm{net}}_k$ of
+limits charging to as little as 65.6 kW. This is the network component $`\mathcal{F}^{\mathrm{net}}_k`$ of
 the envelope.
 
 ![Network-deliverable limits](README_Figures/Fig_flexibility_limits.png)
 
 **Battery degradation model** (`Fig_degradation_model`, supporting figure).
-(a) Cycle-depth stress $\Phi(\delta)$ and full-cycle stress $G(\delta)$; (b) marginal stress of the ten
+(a) Cycle-depth stress $`\Phi(\delta)`$ and full-cycle stress $`G(\delta)`$; (b) marginal stress of the ten
 equal cycle-depth segments, exact and as represented by the convex hull in the EMS; (c) SOH as a function
-of the linearized degradation $F$, showing the fast initial SEI-film fade, the initial health values of
+of the linearized degradation $`F`$, showing the fast initial SEI-film fade, the initial health values of
 the sensitivity analysis and the end-of-life threshold. The curves are evaluated from the closed-form
 model with its published parameters and checked against the released degradation parameters. This figure
 keeps the typography of the study's working figures.
@@ -361,7 +385,7 @@ separately.
 | Intervals with a network violation | 0 | 1 | 0 | 0 |
 
 Grid energy and cost are corrected by the energy needed to restore the initial SOC (valued at the valley
-price). $\Delta SOH$ is evaluated by rainflow counting of the realized SOC trajectory and is dominated by
+price). $`\Delta SOH`$ is evaluated by rainflow counting of the realized SOC trajectory and is dominated by
 calendar aging at this time scale; it is not reported for B0, which has no battery.
 
 ### Monte Carlo analysis (100 paired realizations)
@@ -432,7 +456,7 @@ compensation consumes the daily allowance; this deficit is included in the corre
   realizations also show a violation without storage. The released data record which realizations and how
   many intervals are affected, but not which constraint or interval.
 - The evaluation uses one representative day, a numerical benchmark and an established aging model;
-  $\Delta SOH$ values are single-day values and should be read as relative differences.
+  $`\Delta SOH`$ values are single-day values and should be read as relative differences.
 
 ## Repository structure
 

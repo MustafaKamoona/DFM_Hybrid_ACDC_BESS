@@ -41,20 +41,20 @@ plotted values.
 ## Implementation notes
 
 - **Exact battery state update.** After each interval the linearized degradation is advanced with the
-  realized cycle stress $\tfrac{1}{2}\lvert G(\delta_{k+1}) - G(\delta_k)\rvert$ and the calendar stress (evaluated
+  realized cycle stress $`\tfrac{1}{2}\lvert G(\delta_{k+1}) - G(\delta_k)\rvert`$ and the calendar stress (evaluated
   at the mean SOC of the interval), and the state of health follows the full nonlinear capacity-fade
-  function, $SOH_{k+1} = 1 - L(F_{k+1})$ (`code/dfm_acdc/bess.py`). Reported health consumption uses
+  function, $`SOH_{k+1} = 1 - L(F_{k+1})`$ (`code/dfm_acdc/bess.py`). Reported health consumption uses
   rainflow counting of the realized SOC trajectory.
 - **Linearized degradation limit of the envelope.** The degradation limit uses a local linearization of
-  the cycle-induced degradation only: $\Delta D_k(P) = L'(F_k)\,\tfrac{1}{2}\lvert G(\delta_{\mathrm{end}}(P)) - G(\delta_k)\rvert$.
-  The day's used cycle stress $F^{\mathrm{cyc}}_k$ is accumulated in stress units, and both the budget and
+  the cycle-induced degradation only: $`\Delta D_k(P) = L'(F_k)\,\tfrac{1}{2}\lvert G(\delta_{\mathrm{end}}(P)) - G(\delta_k)\rvert`$.
+  The day's used cycle stress $`F^{\mathrm{cyc}}_k`$ is accumulated in stress units, and both the budget and
   the used part are converted with the slope of the current interval,
-  $D^{\max} = L'(F_k)\,N_{\mathrm{ref}}\,G(DoD_{\mathrm{ref}})$ and $D^{\mathrm{cyc}}_k = L'(F_k)\,F^{\mathrm{cyc}}_k$
-  (`code/dfm_acdc/envelope.py`); the slope is re-evaluated at every interval. $L'(F_k)$ therefore cancels
+  $`D^{\max} = L'(F_k)\,N_{\mathrm{ref}}\,G(DoD_{\mathrm{ref}})`$ and $`D^{\mathrm{cyc}}_k = L'(F_k)\,F^{\mathrm{cyc}}_k`$
+  (`code/dfm_acdc/envelope.py`); the slope is re-evaluated at every interval. $`L'(F_k)`$ therefore cancels
   exactly in this feasibility condition, which reduces to
-  $\tfrac{1}{2}\lvert G(\delta_{\mathrm{end}}(P)) - G(\delta_k)\rvert \le N_{\mathrm{ref}}\,G(DoD_{\mathrm{ref}}) - F^{\mathrm{cyc}}_k$.
-  The cancellation does not apply to the nonlinear increment $L(F_k+\Delta F) - L(F_k)$. The EMS applies
-  the same slope over its planning horizon, with the convex-hull representation of $G$
+  $`\tfrac{1}{2}\lvert G(\delta_{\mathrm{end}}(P)) - G(\delta_k)\rvert \le N_{\mathrm{ref}}\,G(DoD_{\mathrm{ref}}) - F^{\mathrm{cyc}}_k`$.
+  The cancellation does not apply to the nonlinear increment $`L(F_k+\Delta F) - L(F_k)`$. The EMS applies
+  the same slope over its planning horizon, with the convex-hull representation of $`G`$
   (`code/dfm_acdc/ems.py`).
 - **Degradation-model figure.** `Fig_degradation_model` (supporting figure) keeps the typography of the
   study's working figures (Matplotlib default fonts and panel letters).
