@@ -1,0 +1,12 @@
+test,value,tolerance,pass
+AR(1) lag-1 correlation of the demand error = phi,0.800 vs 0.8,0.02,True
+eps=0.01: mean out-of-sample coverage = 1-eps (+/- 6 s.e./sqrt(96)),"dis 0.9900, ch 0.9900 (target 0.99)",,True
+eps=0.01: every interval within 4 combined s.e. of 1-eps,"dis min 0.9873, ch min 0.9877",,True
+eps=0.05: mean out-of-sample coverage = 1-eps (+/- 6 s.e./sqrt(96)),"dis 0.9500, ch 0.9501 (target 0.95)",,True
+eps=0.05: every interval within 4 combined s.e. of 1-eps,"dis min 0.9449, ch min 0.9448",,True
+eps=0.1: mean out-of-sample coverage = 1-eps (+/- 6 s.e./sqrt(96)),"dis 0.9000, ch 0.9001 (target 0.90)",,True
+eps=0.1: every interval within 4 combined s.e. of 1-eps,"dis min 0.8952, ch min 0.8913",,True
+eps=0.2: mean out-of-sample coverage = 1-eps (+/- 6 s.e./sqrt(96)),"dis 0.8001, ch 0.8000 (target 0.80)",,True
+eps=0.2: every interval within 4 combined s.e. of 1-eps,"dis min 0.7935, ch min 0.7908",,True
+empirical quantile agrees with the Gaussian reference (truncation only),max rel. dev. 0.028,8 %,True
+F_safe subset F_phys subset F_rated and P_safe = P_flex - P_res when positive (2592 states),0 failures,,True

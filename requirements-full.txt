@@ -1,0 +1,9 @@
+# Full re-run of the numerical study (tested on Windows x64, Python 3.10)
+-r requirements.txt
+scipy>=1.11          # HiGHS MILP solver (scipy.optimize.milp)
+hjson>=3.1
+cffi>=1.15
+openpyxl>=3.1
+psutil>=5.9
+jupyterlab>=4.0
+pydae==1.5.1         # network model builder and solver (requires Intel MKL)

@@ -1,0 +1,39 @@
+cff-version: 1.2.0
+message: "If you use this software or data, please cite it as below."
+title: "Dynamic Flexibility Management of Battery Energy Storage in Hybrid AC/DC Distribution Networks: A Health-Aware Flexibility Envelope Approach (code and data)"
+type: software
+version: 1.0.0
+license: MIT
+authors:
+  - family-names: Kamoona
+    given-names: Mustafa A.
+    orcid: "https://orcid.org/0000-0002-2873-6218"
+    affiliation: "Department of Electrical Engineering, Universidad de Sevilla"
+  - family-names: Mauricio
+    given-names: Juan Manuel
+    affiliation: "Department of Electrical Engineering, Universidad de Sevilla"
+  - family-names: "Rodríguez del Nozal"
+    given-names: "Álvaro"
+    affiliation: "Department of Electrical Engineering, Universidad de Sevilla"
+keywords:
+  - battery energy storage
+  - dynamic flexibility
+  - hybrid AC/DC distribution networks
+  - battery degradation
+  - uncertainty
+  - energy management
+  - CIGRE low-voltage benchmark
+references:
+  - type: article
+    title: "Hybrid AC/DC Topologies for the CIGRE Low-Voltage Benchmark Performance Evaluation"
+    authors:
+      - family-names: Kamoona
+        given-names: Mustafa A.
+      - family-names: Mauricio
+        given-names: Juan Manuel
+    journal: Eng
+    volume: 7
+    issue: 4
+    start: 147
+    year: 2026
+    doi: 10.3390/eng7040147

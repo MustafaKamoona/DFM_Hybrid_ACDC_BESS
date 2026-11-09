@@ -1,0 +1,7 @@
+test,value,tolerance,pass
+P_net feasible at P_net and infeasible at P_net + 1 kW (192 limits),0 failures,,True
+P_en matches Eqs. energy_dis_flex / energy_ch_flex,0.0,,True
+P_deg feasible: dD(P_deg sustained over H_f) <= D_allow,0 failures,,True
+P_deg maximal: dD(P_deg + 0.01 kW) > D_allow,0 failures,,True
+"intersection == [-P_flex_ch, P_flex_dis] on a 2.5-kW grid (14 states x 121 points)",0 mismatching points,,True
+active limiter == argmin of the three limits,0 errors,,True

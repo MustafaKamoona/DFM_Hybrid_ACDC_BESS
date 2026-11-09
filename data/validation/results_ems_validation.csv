@@ -1,0 +1,18 @@
+test,value,tolerance,pass
+B1: no simultaneous charge and discharge,0.0,,True
+"B1: SOC within [SOC_min, SOC_max]","[0.100, 0.900]",,True
+B1: all MILPs solved to optimality (no time-limit hit),0 non-optimal,,True
+B2: no simultaneous charge and discharge,0.0,,True
+"B2: SOC within [SOC_min, SOC_max]","[0.260, 0.900]",,True
+B2: all MILPs solved to optimality (no time-limit hit),0 non-optimal,,True
+DFM: no simultaneous charge and discharge,0.0,,True
+"DFM: SOC within [SOC_min, SOC_max]","[0.260, 0.801]",,True
+DFM: all MILPs solved to optimality (no time-limit hit),0 non-optimal,,True
+DFM: executed schedule inside F_safe at every interval,96/96,,True
+"DFM: P_flex = min(P_en, P_deg, P_net) along the closed loop",,,True
+B1: online vs rainflow cycle stress on the actual dispatch,5.995e-05 / 5.568e-05 (ratio 1.077),+/-25 %,True
+B2: online vs rainflow cycle stress on the actual dispatch,3.778e-05 / 3.683e-05 (ratio 1.026),+/-25 %,True
+DFM: online vs rainflow cycle stress on the actual dispatch,2.162e-05 / 1.886e-05 (ratio 1.147),+/-25 %,True
+move blocking: closed-loop cost within 0.1 % of the full-resolution MILP,0.015 %,0.1 %,True
+move blocking: solve time reduction,1626 -> 158 ms (mean),,True
+trial 0: executed power (schedule + correction) within battery-side physical limits,,,True

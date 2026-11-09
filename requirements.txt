@@ -1,0 +1,4 @@
+# Figure reproduction from the released data (tested: Python 3.10, numpy 2.2, pandas 2.3, matplotlib 3.10)
+numpy>=1.24
+pandas>=2.0
+matplotlib>=3.8

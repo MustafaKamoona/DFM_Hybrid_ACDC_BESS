@@ -1,0 +1,20 @@
+test,value,tolerance,pass
+discharge (P_B>0) lowers SOC,-0.05847953216374269,,True
+charge (P_B<0) raises SOC,0.05277784458617718,,True
+P_B = P_dis - P_ch with P_dis*P_ch = 0,61 values,,True
+discharge SOC step = -P dt/(eta_dis E_use),1.3877787807814457e-17,1e-12,True
+charge SOC step = eta_ch P dt / E_use,-1.3877787807814457e-17,1e-12,True
+round-trip efficiency = eta_ch*eta_dis,0.9024939934286756,1e-4 (SOH drift),True
+terminal energy + stored-energy change + losses = 0 [kWh],-2.5011104298755527e-12,1e-9 kWh,True
+"SOC never leaves [SOC_min, SOC_max]","[0.1018, 0.8968]",,True
+no SOC clipping needed (bounds respected by construction),0.0,,True
+|P_B| <= P_rated,149.71762664394475,,True
+"bounds at SOC=0.1: [-150.0, 0.0] kW keep SOC in window",0.1000..0.2319,,True
+"bounds at SOC=0.12: [-150.0, 20.5] kW keep SOC in window",0.1000..0.2519,,True
+"bounds at SOC=0.5: [-150.0, 150.0] kW keep SOC in window",0.3538..0.6319,,True
+"bounds at SOC=0.88: [-22.7, 150.0] kW keep SOC in window",0.7338..0.9000,,True
+"bounds at SOC=0.9: [-0.0, 150.0] kW keep SOC in window",0.7538..0.9000,,True
+SOH non-increasing over the random dispatch,0.0,,True
+E_use = SOH * E_rated,0.0,,True
+idle day: zero cycle aging,0.0,,True
+idle day: SOH loss = calendar aging only,3.309e-05 vs 3.310e-05,0.1 %,True

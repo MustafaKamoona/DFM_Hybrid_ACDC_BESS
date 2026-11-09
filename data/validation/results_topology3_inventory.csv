@@ -1,0 +1,167 @@
+component,name,detail
+bus,MV0,20 kV
+bus,R01,0.4 kV
+bus,R02,0.4 kV
+bus,R03,0.4 kV
+bus,R04,0.4 kV
+bus,R05,0.4 kV
+bus,R06,0.4 kV
+bus,R07,0.4 kV
+bus,R08,0.4 kV
+bus,R09,0.4 kV
+bus,R10,0.4 kV
+bus,R11,0.4 kV
+bus,R12,0.4 kV
+bus,R13,0.4 kV
+bus,R14,0.4 kV
+bus,R15,0.4 kV
+bus,R16,0.4 kV
+bus,R17,0.4 kV
+bus,R18,0.4 kV
+bus,I01,0.4 kV
+bus,I02,0.4 kV
+bus,C01,0.4 kV
+bus,C02,0.4 kV
+bus,C03,0.4 kV
+bus,C04,0.4 kV
+bus,C05,0.4 kV
+bus,C06,0.4 kV
+bus,C07,0.4 kV
+bus,C08,0.4 kV
+bus,C09,0.4 kV
+bus,C10,0.4 kV
+bus,C11,0.4 kV
+bus,C12,0.4 kV
+bus,C13,0.4 kV
+bus,C14,0.4 kV
+bus,C15,0.4 kV
+bus,C16,0.4 kV
+bus,C17,0.4 kV
+bus,C18,0.4 kV
+bus,C19,0.4 kV
+bus,C20,0.4 kV
+bus,S01,0.8 kV
+bus,S03,0.8 kV
+bus,S04,0.8 kV
+bus,S06,0.8 kV
+bus,S07,0.8 kV
+bus,S09,0.8 kV
+bus,S10,0.8 kV
+bus,S11,0.8 kV
+bus,S16,0.8 kV
+bus,S17,0.8 kV
+bus,S18,0.8 kV
+bus,S14,0.8 kV
+bus,S15,0.8 kV
+bus,H01,0.8 kV
+bus,H02,0.8 kV
+bus,D01,0.8 kV
+bus,D03,0.8 kV
+bus,D05,0.8 kV
+bus,D08,0.8 kV
+bus,D09,0.8 kV
+bus,D11,0.8 kV
+bus,D12,0.8 kV
+bus,D16,0.8 kV
+bus,D17,0.8 kV
+bus,D19,0.8 kV
+bus,D20,0.8 kV
+transformer,MV0-R01,"500 kVA, 20/0.4 kV, Rcc=0.01, Xcc=0.04, Dyn11"
+transformer,MV0-I01,"150 kVA, 20/0.4 kV, Rcc=0.01, Xcc=0.04, Dyn11"
+transformer,MV0-C01,"300 kVA, 20/0.4 kV, Rcc=0.01, Xcc=0.04, Dyn11"
+AC line,R01-R02,"UG1, 35 m, Imax=430 A"
+AC line,R02-R03,"UG1, 35 m, Imax=430 A"
+AC line,R03-R04,"UG1, 35 m, Imax=430 A"
+AC line,R04-R05,"UG1, 35 m, Imax=430 A"
+AC line,R05-R06,"UG1, 35 m, Imax=430 A"
+AC line,R06-R07,"UG1, 35 m, Imax=430 A"
+AC line,R07-R08,"UG1, 35 m, Imax=430 A"
+AC line,R08-R09,"UG1, 35 m, Imax=430 A"
+AC line,R09-R10,"UG1, 35 m, Imax=430 A"
+AC line,R03-R11,"UG3, 35 m, Imax=180 A"
+AC line,R04-R12,"UG3, 35 m, Imax=180 A"
+AC line,R12-R13,"UG3, 35 m, Imax=180 A"
+AC line,R13-R14,"UG3, 35 m, Imax=180 A"
+AC line,R14-R15,"UG3, 35 m, Imax=180 A"
+AC line,R06-R16,"UG3, 30 m, Imax=180 A"
+AC line,R09-R17,"UG3, 30 m, Imax=180 A"
+AC line,R10-R18,"UG3, 30 m, Imax=180 A"
+AC line,I01-I02,"UG2, 200 m, Imax=330 A"
+AC line,C01-C02,"OH1, 30 m, Imax=248.5 A"
+AC line,C02-C03,"OH1, 30 m, Imax=248.5 A"
+AC line,C03-C04,"OH1, 30 m, Imax=248.5 A"
+AC line,C04-C05,"OH1, 30 m, Imax=248.5 A"
+AC line,C05-C06,"OH1, 30 m, Imax=248.5 A"
+AC line,C06-C07,"OH1, 30 m, Imax=248.5 A"
+AC line,C07-C08,"OH1, 30 m, Imax=248.5 A"
+AC line,C08-C09,"OH1, 30 m, Imax=248.5 A"
+AC line,C03-C10,"OH2, 30 m, Imax=125 A"
+AC line,C10-C11,"OH2, 30 m, Imax=125 A"
+AC line,C11-C12,"OH3, 30 m, Imax=96 A"
+AC line,C11-C13,"OH3, 30 m, Imax=96 A"
+AC line,C10-C14,"OH3, 30 m, Imax=96 A"
+AC line,C05-C15,"OH3, 30 m, Imax=96 A"
+AC line,C15-C16,"OH2, 30 m, Imax=125 A"
+AC line,C15-C18,"OH2, 30 m, Imax=125 A"
+AC line,C16-C17,"OH3, 30 m, Imax=96 A"
+AC line,C08-C19,"OH3, 30 m, Imax=96 A"
+AC line,C09-C20,"OH3, 30 m, Imax=96 A"
+DC line,S01-S03,"UG1dc, 70 m, Imax=300 A"
+DC line,S03-S04,"UG1dc, 35 m, Imax=300 A"
+DC line,S04-S06,"UG1dc, 70 m, Imax=300 A"
+DC line,S06-S07,"UG1dc, 105 m, Imax=300 A"
+DC line,S07-S09,"UG1dc, 30 m, Imax=300 A"
+DC line,S09-S10,"UG1dc, 30 m, Imax=300 A"
+DC line,S03-S11,"UG1dc, 30 m, Imax=300 A"
+DC line,S04-S14,"UG1dc, 105 m, Imax=300 A"
+DC line,S14-S15,"UG1dc, 35 m, Imax=300 A"
+DC line,S06-S16,"UG1dc, 30 m, Imax=300 A"
+DC line,S09-S17,"UG1dc, 30 m, Imax=300 A"
+DC line,S10-S18,"UG1dc, 30 m, Imax=300 A"
+DC line,H01-H02,"UG1dc, 200 m, Imax=300 A"
+DC line,D01-D03,"UG1dc, 60 m, Imax=300 A"
+DC line,D03-D05,"UG1dc, 60 m, Imax=300 A"
+DC line,D05-D08,"UG1dc, 90 m, Imax=300 A"
+DC line,D08-D09,"UG1dc, 30 m, Imax=300 A"
+DC line,D03-D11,"UG1dc, 90 m, Imax=300 A"
+DC line,D11-D12,"UG1dc, 90 m, Imax=300 A"
+DC line,D05-D16,"UG1dc, 60 m, Imax=300 A"
+DC line,D16-D17,"UG1dc, 30 m, Imax=300 A"
+DC line,D08-D19,"UG1dc, 30 m, Imax=300 A"
+DC line,D09-D20,"UG1dc, 30 m, Imax=300 A"
+DC line,S07-H02,"UG1dc, 30 m, Imax=300 A"
+DC line,H02-D19,"UG1dc, 30 m, Imax=300 A"
+VSC,I01-H01,"Vdc-Q (DC-voltage forming), S_rated=150.0 kVA"
+VSC,R01-S01,"P-Q with P-V droop, S_rated=150.0 kVA"
+VSC,C01-D01,"P-Q with P-V droop, S_rated=150.0 kVA"
+VSC,R10-S10,"P-Q with P-V droop, S_rated=50.0 kVA"
+VSC,R14-S14,"P-Q with P-V droop, S_rated=20.0 kVA"
+VSC,I02-H02,"P-Q with P-V droop, S_rated=50.0 kVA"
+VSC,C09-D09,"P-Q with P-V droop, S_rated=20.0 kVA"
+VSC,C11-D11,"P-Q with P-V droop, S_rated=50.0 kVA"
+VSC,C16-D16,"P-Q with P-V droop, S_rated=20.0 kVA"
+AC load (Case 3),R01,"P=190.000 kW, Q=62.450 kvar, 3-ph"
+AC load (Case 3),R11,"P=4.275 kW, Q=1.405 kvar, 1-ph (phase a)"
+AC load (Case 3),R15,"P=14.820 kW, Q=4.871 kvar, 1-ph (phase a)"
+AC load (Case 3),R16,"P=15.675 kW, Q=5.152 kvar, 1-ph (phase a)"
+AC load (Case 3),R17,"P=9.975 kW, Q=3.279 kvar, 1-ph (phase a)"
+AC load (Case 3),R18,"P=13.395 kW, Q=4.403 kvar, 1-ph (phase a)"
+AC load (Case 3),I02,"P=25.500 kW, Q=15.803 kvar, 1-ph (phase a)"
+AC load (Case 3),C01,"P=108.000 kW, Q=52.307 kvar, 3-ph"
+AC load (Case 3),C12,"P=5.400 kW, Q=2.615 kvar, 1-ph (phase a)"
+AC load (Case 3),C13,"P=5.400 kW, Q=2.615 kvar, 1-ph (phase a)"
+AC load (Case 3),C14,"P=6.750 kW, Q=3.269 kvar, 1-ph (phase a)"
+AC load (Case 3),C17,"P=6.750 kW, Q=3.269 kvar, 1-ph (phase a)"
+AC load (Case 3),C18,"P=2.160 kW, Q=1.046 kvar, 1-ph (phase a)"
+AC load (Case 3),C19,"P=4.320 kW, Q=2.092 kvar, 1-ph (phase a)"
+AC load (Case 3),C20,"P=2.160 kW, Q=1.046 kvar, 1-ph (phase a)"
+DC load (Case 3),S11,P=9.975 kW
+DC load (Case 3),S15,P=34.580 kW
+DC load (Case 3),S16,P=36.575 kW
+DC load (Case 3),S17,P=23.275 kW
+DC load (Case 3),S18,P=31.255 kW
+DC load (Case 3),H02,P=59.500 kW
+DC load (Case 3),D12,P=25.200 kW
+DC load (Case 3),D17,P=31.500 kW
+DC load (Case 3),D19,P=10.080 kW
+DC load (Case 3),D20,P=10.080 kW
