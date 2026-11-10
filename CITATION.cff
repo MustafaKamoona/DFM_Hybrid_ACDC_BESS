@@ -2,7 +2,7 @@ cff-version: 1.2.0
 message: "If you use this software or data, please cite it as below."
 title: "Dynamic Flexibility Management of Battery Energy Storage in Hybrid AC/DC Distribution Networks: A Health-Aware Flexibility Envelope Approach (code and data)"
 type: software
-version: 1.0.0
+version: 1.0.1
 license: MIT
 authors:
   - family-names: Kamoona

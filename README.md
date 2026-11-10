@@ -545,7 +545,7 @@ benchmark:
   title  = {Dynamic Flexibility Management of Battery Energy Storage in Hybrid {AC/DC} Distribution
             Networks: A Health-Aware Flexibility Envelope Approach -- research code, numerical
             datasets and figures},
-  note   = {Software and data, version 1.0.0}
+  note   = {Software and data, version 1.0.1}
 }
 
 @article{Kamoona2026Eng,
