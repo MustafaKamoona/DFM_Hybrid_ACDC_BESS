@@ -1,6 +1,6 @@
 # Dynamic Flexibility Management of Battery Energy Storage in Hybrid AC/DC Distribution Networks: A Health-Aware Flexibility Envelope Approach
 
-**Mustafa A. Kamoona, Juan Manuel Mauricio, Álvaro Rodríguez del Nozal**
+**Mustafa A. Kamoona, Juan Manuel Mauricio**
 Department of Electrical Engineering, Universidad de Sevilla, Seville, Spain
 
 Research code, numerical datasets and figures accompanying the study.
@@ -541,7 +541,7 @@ benchmark:
 
 ```bibtex
 @misc{Kamoona_DFM_code,
-  author = {Kamoona, Mustafa A. and Mauricio, Juan Manuel and Rodr{\'i}guez del Nozal, {\'A}lvaro},
+  author = {Kamoona, Mustafa A. and Mauricio, Juan Manuel},
   title  = {Dynamic Flexibility Management of Battery Energy Storage in Hybrid {AC/DC} Distribution
             Networks: A Health-Aware Flexibility Envelope Approach -- research code, numerical
             datasets and figures},
