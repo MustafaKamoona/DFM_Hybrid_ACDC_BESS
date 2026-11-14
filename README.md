@@ -1,4 +1,4 @@
-# Dynamic Flexibility Management of Battery Energy Storage in Hybrid AC/DC Distribution Networks: A Health-Aware Flexibility Envelope Approach
+# Battery Health-Aware Dynamic Flexibility Management for Hybrid AC/DC Distribution Networks
 
 **Mustafa A. Kamoona, Juan Manuel Mauricio**
 Department of Electrical Engineering, Universidad de Sevilla, Seville, Spain
@@ -542,10 +542,10 @@ benchmark:
 ```bibtex
 @misc{Kamoona_DFM_code,
   author = {Kamoona, Mustafa A. and Mauricio, Juan Manuel},
-  title  = {Dynamic Flexibility Management of Battery Energy Storage in Hybrid {AC/DC} Distribution
-            Networks: A Health-Aware Flexibility Envelope Approach -- research code, numerical
-            datasets and figures},
-  note   = {Software and data, version 1.0.1}
+  title  = {Battery Health-Aware Dynamic Flexibility Management for Hybrid {AC/DC} Distribution
+            Networks -- research code, numerical datasets and figures},
+  note   = {Software and data, version 1.0.2},
+  doi    = {10.5281/zenodo.24088866}
 }
 
 @article{Kamoona2026Eng,
@@ -561,6 +561,10 @@ benchmark:
 ```
 
 Machine-readable metadata: [`CITATION.cff`](CITATION.cff).
+
+**Archive of this repository.** Zenodo concept DOI (all versions, resolves to the latest):
+[10.5281/zenodo.24088866](https://doi.org/10.5281/zenodo.24088866). Version 1.0.1:
+[10.5281/zenodo.24106846](https://doi.org/10.5281/zenodo.24106846).
 
 **Topology-3 implementation.** Repository: https://github.com/MustafaKamoona/New_Topologies_CIGRE.
 Archived version on Zenodo: record [18325627](https://zenodo.org/records/18325627). Zenodo assigns a
